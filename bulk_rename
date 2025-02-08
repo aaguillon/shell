@@ -1,0 +1,9 @@
+# Replace spaces in filenames and dirnames with underscores (SAFE for nested paths)
+find . -depth -name "* *" -execdir bash -c '
+  for item; do
+    # Generate new name by replacing spaces with underscores
+    newname="${item// /_}"
+    # Rename the file/directory
+    mv -- "$item" "$newname"
+  done
+' _ {} +
